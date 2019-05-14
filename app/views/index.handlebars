@@ -1,0 +1,48 @@
+
+<h1>{{title }}</h1>
+  <p>Welcome to {{title }}</p>
+  <div>
+    {{#each cliente}}
+        <p>{{@index}}. {{this.identificacion}}</p>
+        <p>{{this.nombre}}</p>
+        <p>{{this.direccion}}</p>
+        <p>{{this.telefono}}</p>
+        <p>{{this.restriccion}}</p>
+    {{/each}}
+  </div>
+   
+
+   <h1>{{title }}</h1>
+  <p>Welcome to {{title }}</p>
+  <div>
+    {{#each tipo_usuario}}
+        <p>{{@index}}. {{this.id_tipo_usuario}}</p>
+        <p>{{this.descripcion}}</p>
+    {{/each}}
+  </div>
+
+<h1>{{title }}</h1>
+  <p>Welcome to {{title }}</p>
+  <div>
+    {{#each categoria}}
+        <p>{{@index}}. {{this.idCategoria}}</p>
+        <p>{{this.nombre}}</p>
+    {{/each}}
+  </div>
+
+<h1>{{title }}</h1>
+  <p>Welcome to {{title }}</p>
+  <div>
+    {{#each usuario}}
+        <p>{{@index}}. {{tipo_usuario.id_tipo_usuario}}</p>
+        <p>{{tipo_usuario.descripcion}}</p>
+        <p>{{this.identificacion_usuario}}</p>
+        <p>{{this.nombre_usuario}}</p>
+        <p>{{this.telefono}}</p>
+        <p>{{this.cargo}}</p>
+        <p>{{this.correo_electronico}}</p>
+        <p>{{this.contrasena}}</p>
+    {{/each}}
+  </div>
+ 
+ 
