@@ -4,12 +4,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ClienteSchema = new Schema({
-  identificacion: String,
-  nombre: String,
-  direccion: String,
-  telefono:String,
-  restriccion:String
-
+  identificacion: { type:String, unique:true, required:true},
+  nombre: { type:String, required:true},
+  direccion: { type:String, unique:true, required:true},
+  telefono:{ type:String, unique:true, required:true},
+  restriccion: { type:String, required:true},
 });
 
 ClienteSchema.virtual('date')

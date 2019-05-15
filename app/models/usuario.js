@@ -1,16 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const Tipo_usuario= require('../models/tipo_usuario')
 
 const UsuarioSchema = new Schema({
-  id_tipo_usuario: String,
-  descripcion: String,
-  identificacion: String,
-  nombre: String,
-  telefono:String,
-  cargo:String,
-  correo_electronico:String,
-  contrasena:String
+  tipo_usuario: {type: Schema.Types.ObjectId, ref:Tipo_usuario, required:true},
+  identificacion:{ type:String, unique:true, required:true},
+  nombre_usuario: { type:String, unique:true, required:true},
+  telefono:{ type:String, unique:true},
+  cargo:{ type:String, required:true},
+  correo_electronico:{ type:String, unique:true, required:true},
+  contrasena:{ type:String, required:true},
 });
 
 UsuarioSchema.virtual('date')

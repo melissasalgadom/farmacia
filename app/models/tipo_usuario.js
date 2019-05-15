@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Tipo_usuarioSchema = new Schema({
-  id_tipo_usuario: String,
-  descripcion: String
+  id_tipo_usuario: { type:String, unique:true, required:true},
+  descripcion: { type:String, unique:true, required:true},
 
 });
 
