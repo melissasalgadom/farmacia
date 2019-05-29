@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Tipo_usuario = mongoose.model('Tipo_usuario');
+const auth = require('../middlewares/auth')
 
 module.exports = (app) => {
   app.use('/', router);
@@ -9,7 +10,7 @@ module.exports = (app) => {
 
 
 
-router.get('/tipo_usuarios', (req, res, next) => {
+router.get('/tipo_usuarios',auth, (req, res, next) => {
   Tipo_usuario.find((err, tipo_usuarios) => {
     if (err) return res.status(500).send({message: 
          'Error al realizar la petición: '+err})
@@ -18,7 +19,7 @@ router.get('/tipo_usuarios', (req, res, next) => {
   });
 });
 
-router.get('/tipo_usuarios/:tipo_usuarioId', (req, res, next) => {
+router.get('/tipo_usuarios/:tipo_usuarioId', auth,(req, res, next) => {
   let tipo_usuarioId = req.params.tipo_usuarioId
   Tipo_usuario.findById(tipo_usuarioId, (err, tipo_usuario) => {
     if (err) return res.status(500).send({message: 
@@ -42,7 +43,7 @@ router.post('/tipo_usuario',(req, res, next) => {
   })
 });
 
-router.put('/tipo_usuario/:tipo_usuarioId',(req, res, next) => {
+router.put('/tipo_usuario/:tipo_usuarioId',auth,(req, res, next) => {
   let tipo_usuarioId = req.params.tipo_usuarioId
   let tipo_usuarioUpdate= req.body
 
@@ -55,7 +56,7 @@ router.put('/tipo_usuario/:tipo_usuarioId',(req, res, next) => {
 });
 
 
-router.delete('/tipo_usuario/:tipo_usuarioId', (req, res, next) => {
+router.delete('/tipo_usuario/:tipo_usuarioId', auth, (req, res, next) => {
   let tipo_usuarioId = req.params.tipo_usuarioId
   Tipo_usuario.findByIdAndRemove(tipo_usuarioId, (err, tipo_usuario) => {
     if (err) return res.status(500).send({message: 

@@ -8,6 +8,7 @@ const config = {
     app: {
       name: 'farmacia'
     },
+    SECRET_TOKEN:'farmacia1234567',
     port: process.env.PORT || 3000,
     db: 'mongodb://electiva:electiva@cluster0-shard-00-00-xjidb.mongodb.net:27017,cluster0-shard-00-01-xjidb.mongodb.net:27017,cluster0-shard-00-02-xjidb.mongodb.net:27017/farmacia?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true'
   },
@@ -17,6 +18,7 @@ const config = {
     app: {
       name: 'farmacia'
     },
+    SECRET_TOKEN:'farmacia1234567',
     port: process.env.PORT || 3000,
     db: 'mongodb://electiva:electiva@cluster0-shard-00-00-xjidb.mongodb.net:27017,cluster0-shard-00-01-xjidb.mongodb.net:27017,cluster0-shard-00-02-xjidb.mongodb.net:27017/farmacia?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true'
     
@@ -27,6 +29,7 @@ const config = {
     app: {
       name: 'farmacia'
     },
+    SECRET_TOKEN:'farmacia1234567',
     port: process.env.PORT || 3000,
     db: 'mongodb://electiva:electiva@cluster0-shard-00-00-xjidb.mongodb.net:27017,cluster0-shard-00-01-xjidb.mongodb.net:27017,cluster0-shard-00-02-xjidb.mongodb.net:27017/farmacia?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true'
     

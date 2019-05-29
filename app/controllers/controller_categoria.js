@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Categoria = mongoose.model('Categoria');
+const auth = require('../middlewares/auth')
 
 module.exports = (app) => {
   app.use('/', router);
 };
 
-router.get('/categorias', (req, res, next) => {
+router.get('/categorias', auth, (req, res, next) => {
     Categoria.find((err, categorias) => {
     if (err) return res.status(500).send({message: 
          'Error al realizar la petición: '+err})
@@ -16,7 +17,7 @@ router.get('/categorias', (req, res, next) => {
   });
 });
 
-router.get('/categorias/:categoriaId', (req, res, next) => {
+router.get('/categorias/:categoriaId',auth, (req, res, next) => {
   let categoriaId = req.params.categoriaId
   Categoria.findById(categoriaId, (err, categoria) => {
     if (err) return res.status(500).send({message: 
@@ -42,7 +43,7 @@ router.post('/categoria',(req, res, next) => {
 });
 
 
-router.put('/categoria/:categoriaId',(req, res, next) => {
+router.put('/categoria/:categoriaId',auth,(req, res, next) => {
   let categoriaId = req.params.categoriaId
   
   let categoriaUpdate= req.body
@@ -56,7 +57,7 @@ router.put('/categoria/:categoriaId',(req, res, next) => {
 });
 
 
-router.delete('/categoria/:categoriaId', (req, res, next) => {
+router.delete('/categoria/:categoriaId',auth,(req, res, next) => {
   let categoriaId = req.params.categoriaId
   Categoria.findByIdAndRemove(categoriaId, (err, categoria) => {
     if (err) return res.status(500).send({message: 

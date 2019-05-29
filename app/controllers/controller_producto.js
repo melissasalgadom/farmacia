@@ -2,22 +2,27 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Producto = mongoose.model('Producto');
+const Categoria = mongoose.model('Categoria');
+const auth = require('../middlewares/auth')
 
 module.exports = (app) => {
   app.use('/', router);
 };
 
 
-router.get('/productos', (req, res, next) => {
+router.get('/productos',auth, (req, res, next) => {
     Producto.find((err, productos) => {
     if (err) return res.status(500).send({message: 
          'Error al realizar la petición: '+err})
     if (!productos) return res.status(404).send({message: 'No existen productos'})      
+    Categoria.populate(productos, { path: "categoria", select: "nombre_categoria"}, function (err, categoria) {
+      if (err) return res.status(500).send({ message: `Error al realizar la petición: ${err}` })
     return res.status(200).send({ productos })
+
   });
 });
 
-router.get('/productos/:productoId', (req, res, next) => {
+router.get('/productos/:productoId',auth, (req, res, next) => {
   let productoId = req.params.productoId
   Producto.findById(productoId, (err, producto) => {
     if (err) return res.status(500).send({message: 
@@ -51,7 +56,7 @@ router.post('/producto',(req, res, next) => {
 });
 
 
-router.put('/producto/:productoId',(req, res, next) => {
+router.put('/producto/:productoId', auth,(req, res, next) => {
   let productoId = req.params.productoId
   
   let productoUpdate= req.body
@@ -65,7 +70,7 @@ router.put('/producto/:productoId',(req, res, next) => {
 });
 
 
-router.delete('/producto/:productoId', (req, res, next) => {
+router.delete('/producto/:productoId', auth,(req, res, next) => {
   let productoId = req.params.productoId
   Producto.findByIdAndRemove(productoId, (err, producto) => {
     if (err) return res.status(500).send({message: 
@@ -74,4 +79,5 @@ router.delete('/producto/:productoId', (req, res, next) => {
 
     return res.status(200).send({ producto })
   })
+})
 });
