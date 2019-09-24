@@ -10,7 +10,7 @@ module.exports = (app) => {
 };
 
 
-router.get('/productos',auth, (req, res, next) => {
+router.get('/productos', (req, res, next) => {
     Producto.find((err, productos) => {
     if (err) return res.status(500).send({message: 
          'Error al realizar la petición: '+err})
